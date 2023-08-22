@@ -1,0 +1,26 @@
+[package]
+name                  = "calendar_server"
+version               = "0.0.1"
+publish               = false
+authors.workspace     = true
+description.workspace = true
+edition.workspace     = true
+homepage.workspace    = true
+keywords.workspace    = true
+license.workspace     = true
+repository.workspace  = true
+
+[dependencies]
+anyhow             = { workspace = true }
+axum-extra         = { workspace = true }
+axum               = { workspace = true }
+dotenv             = { workspace = true }
+google-calendar    = { workspace = true }
+tokio              = { workspace = true }
+tracing            = { workspace = true }
+tracing-subscriber = { workspace = true }
+serde              = { workspace = true }
+serde_json         = { workspace = true }
+
+[dev-dependencies]
+insta = { workspace = true }
