@@ -34,9 +34,9 @@ async fn main() {
         .route("/auth/login", post(routes::auth::login))
         .with_state(google_calendar);
 
-    tracing::info!("Running server on 0.0.0.0:3000");
+    tracing::info!("Running server on 0.0.0.0:4000");
 
-    axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
+    axum::Server::bind(&"0.0.0.0:4000".parse().unwrap())
         .serve(app.into_make_service())
         .await
         .unwrap();

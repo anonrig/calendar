@@ -7,16 +7,16 @@
     "distDir": "../out"
   },
   "package": {
-    "productName": "calendar",
+    "productName": "Calendar",
     "version": "0.1.0"
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "all": true
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
+      "category": "Productivity",
       "copyright": "",
       "deb": {
         "depends": []
@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.anonrig.calendar",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -57,9 +57,11 @@
       {
         "fullscreen": false,
         "height": 600,
+        "minHeight": 600,
         "resizable": true,
         "title": "Calendar",
-        "width": 800
+        "width": 800,
+        "minWidth": 800
       }
     ]
   }
