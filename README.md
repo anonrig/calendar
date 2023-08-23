@@ -7,5 +7,6 @@
 
 ## Running development
 
+- Initialize the repository using `just init`
 - Run desktop application using `just run-tauri`
 - Run backend server using `just run-server`
