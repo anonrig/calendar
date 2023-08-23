@@ -1,6 +1,5 @@
 [workspace]
-resolver = "2"
-members  = ["server", "client/src-tauri"]
+members = ["server", "client/src-tauri"]
 
 [workspace.package]
 authors     = ["Yagiz Nizipli <yagiz@nizipli.com"]
@@ -22,7 +21,7 @@ axum-extra         = { version = "0.7.7", features = ["typed-routing"] }
 axum               = { version = "0.6.20", features = ["tracing", "http2", "macros", "headers"] }
 dotenv             = { version = "0.15.0" }
 google-calendar    = { version = "0.7.0" }
-tauri              = { version = "1.4.0", features = ["api-all", "system-tray"] }
+tauri              = { version = "1.4.0" }
 tokio              = { version = "1.32.0", features = ["full"] }
 tracing            = { version = "0.1.37" }
 tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }

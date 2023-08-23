@@ -12,7 +12,19 @@
   },
   "tauri": {
     "allowlist": {
-      "all": true
+      "dialog": {
+        "all": true
+      },
+      "window": {
+        "all": true
+      },
+      "globalShortcut": {
+        "all": true
+      },
+      "fs": {
+        "all": true,
+        "scope": ["$APPDATA/**"]
+      }
     },
     "bundle": {
       "active": true,
@@ -61,8 +73,14 @@
         "resizable": true,
         "title": "Calendar",
         "width": 800,
-        "minWidth": 800
+        "minWidth": 800,
+        "decorations": true
       }
-    ]
+    ],
+    "systemTray": {
+      "iconPath": "icons/128x128.png",
+      "iconAsTemplate": true,
+      "title": "Calendar"
+    }
   }
 }

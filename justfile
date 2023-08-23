@@ -12,10 +12,11 @@ alias t := test
 # You can download the pre-compiled binary from <https://github.com/cargo-bins/cargo-binstall#installation>
 # or install via `cargo install cargo-binstall`
 init:
-  cargo binstall cargo-nextest cargo-watch cargo-insta typos-cli taplo-cli cargo-llvm-cov tauri-cli -y && pnpm install -C client
+  cargo binstall cargo-nextest cargo-watch cargo-insta typos-cli taplo-cli cargo-llvm-cov tauri-cli -y && pnpm install -C client && pnpm -C client build
 
 # When ready, run the same CI commands
 ready:
+  pnpm -C client build
   typos
   cargo fmt
   just check
