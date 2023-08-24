@@ -48,6 +48,10 @@ runs:
         sudo apt-get update
         sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev
 
+    - name: Create empty 'out' directory for client
+      shell: bash
+      run: mkdir client/out
+
     - name: Remove `profile` line on MacOS
       shell: bash
       if: runner.os == 'macOS'
