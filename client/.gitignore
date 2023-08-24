@@ -14,10 +14,6 @@
 # production
 /build
 
-# next.js
-/out/
-
-
 # misc
 .DS_Store
 *.pem
