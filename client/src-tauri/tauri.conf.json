@@ -74,7 +74,8 @@
         "title": "Calendar",
         "width": 800,
         "minWidth": 800,
-        "decorations": true
+        "decorations": true,
+        "titleBarStyle": "Overlay"
       }
     ],
     "systemTray": {
