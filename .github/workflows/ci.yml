@@ -5,12 +5,12 @@ on:
   pull_request:
     types: [opened, synchronize]
     paths-ignore:
-      - '**/*.md'
+      - "**/*.md"
   push:
     branches:
       - main
     paths-ignore:
-      - '**/*.md'
+      - "**/*.md"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
@@ -89,7 +89,7 @@ jobs:
 
       - run: cargo fmt --all -- --check
 
-  lint:
+  lint-server:
     name: Clippy
     runs-on: ubuntu-latest
     steps:
@@ -102,6 +102,23 @@ jobs:
 
       - name: Run Clippy
         run: cargo lint -- -D warnings
+
+  lint-client:
+    name: Run Rome Linter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: latest
+
+      - name: Install Rome Linter
+        run: npm install -g rome
+
+      - name: Run Rome Linter
+        run: rome check . && rome format .
 
   test:
     name: Test
