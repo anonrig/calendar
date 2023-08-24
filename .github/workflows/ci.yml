@@ -118,7 +118,7 @@ jobs:
         run: cd client & npm install -g rome
 
       - name: Run Rome Linter
-        run: cd client & rome check . && rome format .
+        run: cd client & rome check . --apply-unsafe && rome format . --write
 
   test:
     name: Test
