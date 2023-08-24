@@ -11,21 +11,6 @@
     "version": "0.1.0"
   },
   "tauri": {
-    "allowlist": {
-      "dialog": {
-        "all": true
-      },
-      "window": {
-        "all": true
-      },
-      "globalShortcut": {
-        "all": true
-      },
-      "fs": {
-        "all": true,
-        "scope": ["$APPDATA/**"]
-      }
-    },
     "bundle": {
       "active": true,
       "category": "Productivity",
@@ -44,11 +29,8 @@
       "identifier": "com.anonrig.calendar",
       "longDescription": "",
       "macOS": {
-        "entitlements": null,
-        "exceptionDomain": "",
         "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
+        "exceptionDomain": ""
       },
       "resources": [],
       "shortDescription": "",
@@ -62,9 +44,6 @@
     "security": {
       "csp": null
     },
-    "updater": {
-      "active": false
-    },
     "windows": [
       {
         "fullscreen": false,
@@ -75,13 +54,8 @@
         "width": 800,
         "minWidth": 800,
         "decorations": true,
-        "titleBarStyle": "Overlay"
+        "titleBarStyle": "Transparent"
       }
-    ],
-    "systemTray": {
-      "iconPath": "icons/128x128.png",
-      "iconAsTemplate": true,
-      "title": "Calendar"
-    }
+    ]
   }
 }
