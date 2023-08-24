@@ -41,6 +41,13 @@ runs:
         echo 'restore-cache: ${{ inputs.restore-cache }}'
         echo 'save-cache: ${{ inputs.save-cache }}'
 
+    - name: Install dependencies (linux only)
+      shell: bash
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev
+
     - name: Remove `profile` line on MacOS
       shell: bash
       if: runner.os == 'macOS'
