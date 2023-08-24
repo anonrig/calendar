@@ -16,7 +16,7 @@
     "lineWidth": 100
   },
   "files": {
-    "ignore": ["node_modules", "public", ".next", ".vercel", "out"]
+    "ignore": ["node_modules/*", "public/*", ".next/*", ".vercel/*", "out/*"]
   },
   "javascript": {
     "formatter": {
