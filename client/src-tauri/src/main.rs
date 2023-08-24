@@ -54,8 +54,10 @@ fn main() {
                 if let Some(window) = app_handle.get_window("main") {
                     window.set_focus().unwrap();
                 }
-                println!("deep-link {:?}", urls);
-                app_handle.emit_all("deeplink-received", urls).unwrap();
+
+                if let Some(url) = urls.first() {
+                    app_handle.emit_all("deeplink-received", url).unwrap();
+                }
             }
             _ => {}
         });
