@@ -14,12 +14,12 @@ rust-version          = "1.60"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.4.0", features = [] }
+tauri-build = { workspace = true, features = [] }
 
 [dependencies]
 serde_json                = { workspace = true }
 serde                     = { workspace = true }
-tauri                     = { workspace = true, features = ["dialog-all", "fs-all", "global-shortcut-all", "window-all", "system-tray"] }
+tauri                     = { workspace = true, features = ["tray-icon"] }
 tauri-plugin-window-state = { workspace = true }
 [profile.release]
 lto           = true
