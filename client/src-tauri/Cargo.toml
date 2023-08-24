@@ -17,10 +17,10 @@ rust-version          = "1.60"
 tauri-build = { version = "1.4.0", features = [] }
 
 [dependencies]
-serde_json = { workspace = true }
-serde      = { workspace = true }
-tauri      = { workspace = true, features = ["dialog-all", "fs-all", "global-shortcut-all", "window-all", "system-tray"] }
-
+serde_json                = { workspace = true }
+serde                     = { workspace = true }
+tauri                     = { workspace = true, features = ["dialog-all", "fs-all", "global-shortcut-all", "window-all", "system-tray"] }
+tauri-plugin-window-state = { workspace = true }
 [profile.release]
 lto           = true
 codegen-units = 1
