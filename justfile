@@ -16,7 +16,7 @@ init:
 
 # When ready, run the same CI commands
 ready:
-  pnpm -C client build
+  pnpm -C client lint-fix
   typos
   cargo fmt
   just check

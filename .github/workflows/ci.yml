@@ -90,7 +90,7 @@ jobs:
       - run: cargo fmt --all -- --check
 
   lint-server:
-    name: Clippy
+    name: Lint server
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -104,21 +104,18 @@ jobs:
         run: cargo lint -- -D warnings
 
   lint-client:
-    name: Run Rome Linter
+    name: Lint client
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
+      - uses: rome/setup-rome@v0.4
         with:
-          node-version: latest
-
-      - name: Install Rome Linter
-        run: cd client & npm install -g rome
+          version: latest
 
       - name: Run Rome Linter
-        run: cd client & rome check . --apply-unsafe && rome format . --write
+        run: rome check . && rome format .
+        working-directory: client
 
   test:
     name: Test
