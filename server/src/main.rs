@@ -5,6 +5,7 @@ use axum::{
     routing::{get, post},
     Router,
 };
+use dotenvy::dotenv;
 use google_calendar::Client;
 use std::{env, sync::Arc};
 
@@ -24,7 +25,7 @@ impl GoogleCalendar {
 
 #[tokio::main]
 async fn main() {
-    dotenv::dotenv().ok();
+    dotenv().ok();
     tracing_subscriber::fmt::init();
 
     let google_calendar = Arc::new(GoogleCalendar);
