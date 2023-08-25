@@ -1,6 +1,11 @@
+mod database;
 mod error;
+mod models;
 mod routes;
+mod schema;
 
+use crate::database::get_connection_pool;
+use axum::routing::any;
 use axum::{
     routing::{get, post},
     Router,
@@ -28,11 +33,14 @@ async fn main() {
     dotenv().ok();
     tracing_subscriber::fmt::init();
 
+    let connection_pool = get_connection_pool().await;
     let google_calendar = Arc::new(GoogleCalendar);
 
     let app = Router::new()
+        .route("/health", any(routes::health::check))
         .route("/auth/redirect", get(routes::auth::redirect))
         .route("/auth/login", post(routes::auth::login))
+        .with_state(connection_pool)
         .with_state(google_calendar);
 
     tracing::info!("Running server on 0.0.0.0:4000");
