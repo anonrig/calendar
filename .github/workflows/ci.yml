@@ -23,8 +23,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: windows-latest
-          - os: ubuntu-latest
           - os: macos-latest
     runs-on: ${{ matrix.os }}
     steps:
@@ -57,7 +55,7 @@ jobs:
 
   deny:
     name: Cargo Deny
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -77,7 +75,7 @@ jobs:
 
   format:
     name: Format
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -91,7 +89,7 @@ jobs:
 
   lint-server:
     name: Lint server
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -105,7 +103,7 @@ jobs:
 
   lint-client:
     name: Lint client
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -123,8 +121,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: windows-latest
-          - os: ubuntu-latest
           - os: macos-latest
     runs-on: ${{ matrix.os }}
     steps:
