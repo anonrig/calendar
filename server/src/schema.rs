@@ -12,8 +12,8 @@ pub mod sql_types {
 
 diesel::table! {
     groups (id) {
-        #[max_length = 16]
-        id -> Binary,
+        #[max_length = 32]
+        id -> Varchar,
         name -> Text,
         created_at -> Datetime,
     }
@@ -25,13 +25,13 @@ diesel::table! {
 
     user_groups (id) {
         #[max_length = 16]
-        id -> Binary,
+        id -> Varchar,
         #[max_length = 6]
         role -> UserGroupsRoleEnum,
-        #[max_length = 16]
-        user_id -> Binary,
-        #[max_length = 16]
-        group_id -> Binary,
+        #[max_length = 32]
+        user_id -> Varchar,
+        #[max_length = 32]
+        group_id -> Varchar,
         created_at -> Datetime,
     }
 }
@@ -41,8 +41,8 @@ diesel::table! {
     use super::sql_types::UsersProviderEnum;
 
     users (id) {
-        #[max_length = 16]
-        id -> Binary,
+        #[max_length = 32]
+        id -> Varchar,
         name -> Text,
         #[max_length = 256]
         email -> Varchar,
