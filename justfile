@@ -61,3 +61,12 @@ run-server:
 
 run-tauri:
   cargo tauri dev
+
+make-migrations name:
+  diesel migration generate {{name}}
+
+run-migrations:
+  diesel migration run
+
+revert-migrations:
+  diesel migration revert
