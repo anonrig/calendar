@@ -18,6 +18,7 @@ bb8                = { workspace = true }
 diesel             = { workspace = true }
 chrono             = { workspace = true }
 diesel-async       = { workspace = true }
+diesel-derive-enum = { workspace = true }
 dotenvy            = { workspace = true }
 google-calendar    = { workspace = true }
 tokio              = { workspace = true }
@@ -25,7 +26,6 @@ tracing            = { workspace = true }
 tracing-subscriber = { workspace = true }
 serde              = { workspace = true }
 serde_json         = { workspace = true }
-uuid               = { workspace = true }
 
 [dev-dependencies]
 insta = { workspace = true }

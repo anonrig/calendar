@@ -1,12 +1,10 @@
 use chrono::prelude::*;
 use diesel::prelude::*;
-use diesel::SqlType;
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Default, SqlType)]
+#[derive(Debug, Clone)]
 pub enum GroupMemberRole {
-    #[default]
     User,
     Owner,
 }
@@ -14,7 +12,7 @@ pub enum GroupMemberRole {
 #[derive(Serialize, Selectable, Identifiable, Queryable)]
 #[diesel(table_name = crate::schema::groups)]
 pub struct Group {
-    id: uuid::Uuid,
+    id: String,
     name: String,
     created_at: DateTime<Utc>,
 }
@@ -28,10 +26,10 @@ pub struct CreateGroup {
 #[derive(Serialize, Selectable, Queryable)]
 #[diesel(table_name = crate::schema::user_groups)]
 pub struct UserGroup {
-    id: uuid::Uuid,
+    id: String,
     role: GroupMemberRole,
-    user_id: uuid::Uuid,
-    group_id: uuid::Uuid,
+    user_id: String,
+    group_id: String,
     created_at: DateTime<Utc>,
 }
 
@@ -39,6 +37,6 @@ pub struct UserGroup {
 #[diesel(table_name = crate::schema::user_groups)]
 pub struct CreateUserGroup {
     role: GroupMemberRole,
-    user_id: uuid::Uuid,
-    group_id: uuid::Uuid,
+    user_id: String,
+    group_id: String,
 }
