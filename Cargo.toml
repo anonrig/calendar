@@ -27,7 +27,7 @@ tauri-plugin-window-state = { git = "https://github.com/tauri-apps/plugins-works
 tokio                     = { version = "1.32.0", features = ["full"] }
 tracing                   = { version = "0.1.37" }
 tracing-subscriber        = { version = "0.3.17", features = ["env-filter"] }
-serde                     = { version = "1.0.185", features = ["derive"] }
+serde                     = { version = "1.0.188", features = ["derive"] }
 serde_json                = { version = "1.0.105" }
 
 # Dev Dependencies
