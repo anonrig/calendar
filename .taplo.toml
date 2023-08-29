@@ -1,5 +1,5 @@
-include = ["Cargo.toml", "server/*/*.toml", "client/*/*.toml"]
+include = ["*.toml", "server/*/*.toml", "client/*/*.toml"]
 
 [formatting]
 align_entries = true
-column_width = 120
+column_width  = 120
