@@ -25,3 +25,6 @@ CREATE TABLE user_groups (
    group_id uuid NOT NULL REFERENCES groups(id),
    created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+--Ensure that there is only 1 owner of a user_group
+CREATE UNIQUE INDEX user_groups_owner_idx ON user_groups(group_id, role) WHERE role = 'owner';
