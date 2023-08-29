@@ -1,5 +1,7 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS groups CASCADE;
 DROP TABLE IF EXISTS user_groups CASCADE;
+
+--enums
 DROP TYPE providers;
 DROP TYPE roles;
