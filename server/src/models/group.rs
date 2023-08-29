@@ -1,42 +1,19 @@
-use chrono::prelude::*;
+use chrono::{DateTime, Utc};
 use diesel::prelude::*;
+use uuid::Uuid;
 
-use serde::{Deserialize, Serialize};
-
-#[derive(Debug, Clone)]
-pub enum GroupMemberRole {
-    User,
-    Owner,
-}
-
-#[derive(Serialize, Selectable, Identifiable, Queryable)]
+#[derive(Queryable, Identifiable, Selectable, Debug, PartialEq)]
 #[diesel(table_name = crate::schema::groups)]
+#[diesel(check_for_backend(diesel::pg::Pg))]
+#[diesel(primary_key(id))]
 pub struct Group {
-    id: String,
-    name: String,
-    created_at: DateTime<Utc>,
+    pub id: Uuid,
+    pub name: String,
+    pub created_at: DateTime<Utc>,
 }
 
-#[derive(Deserialize, Insertable)]
+#[derive(Insertable)]
 #[diesel(table_name = crate::schema::groups)]
-pub struct CreateGroup {
-    name: String,
-}
-
-#[derive(Serialize, Selectable, Queryable)]
-#[diesel(table_name = crate::schema::user_groups)]
-pub struct UserGroup {
-    id: String,
-    role: GroupMemberRole,
-    user_id: String,
-    group_id: String,
-    created_at: DateTime<Utc>,
-}
-
-#[derive(Serialize, Insertable)]
-#[diesel(table_name = crate::schema::user_groups)]
-pub struct CreateUserGroup {
-    role: GroupMemberRole,
-    user_id: String,
-    group_id: String,
+pub struct CreateGroup<'a> {
+    name: &'a str,
 }

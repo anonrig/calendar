@@ -14,13 +14,14 @@ rust-version          = "1.60"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { workspace = true, features = [] }
+tauri-build = { version = "2.0.0-alpha.8", features = [] }
 
 [dependencies]
+tauri                     = { version = "2.0.0-alpha.11", features = ["tray-icon"] }
+tauri-build               = { version = "2.0.0-alpha.8" }
+tauri-plugin-window-state = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 serde_json                = { workspace = true }
 serde                     = { workspace = true }
-tauri                     = { workspace = true, features = ["tray-icon"] }
-tauri-plugin-window-state = { workspace = true }
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.

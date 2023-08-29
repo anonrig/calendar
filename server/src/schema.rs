@@ -2,56 +2,50 @@
 
 pub mod sql_types {
     #[derive(diesel::query_builder::QueryId, diesel::sql_types::SqlType)]
-    #[diesel(mysql_type(name = "Enum"))]
-    pub struct UserGroupsRoleEnum;
+    #[diesel(postgres_type(name = "providers"))]
+    pub struct Providers;
 
     #[derive(diesel::query_builder::QueryId, diesel::sql_types::SqlType)]
-    #[diesel(mysql_type(name = "Enum"))]
-    pub struct UsersProviderEnum;
+    #[diesel(postgres_type(name = "roles"))]
+    pub struct Roles;
 }
 
 diesel::table! {
     groups (id) {
-        #[max_length = 32]
-        id -> Varchar,
+        id -> Uuid,
         name -> Text,
-        created_at -> Datetime,
+        created_at -> Timestamptz,
     }
 }
 
 diesel::table! {
     use diesel::sql_types::*;
-    use super::sql_types::UserGroupsRoleEnum;
+    use super::sql_types::Roles;
 
     user_groups (id) {
-        #[max_length = 16]
-        id -> Varchar,
-        #[max_length = 6]
-        role -> UserGroupsRoleEnum,
-        #[max_length = 32]
-        user_id -> Varchar,
-        #[max_length = 32]
-        group_id -> Varchar,
-        created_at -> Datetime,
+        id -> Uuid,
+        role -> Roles,
+        user_id -> Uuid,
+        group_id -> Uuid,
+        created_at -> Timestamptz,
     }
 }
 
 diesel::table! {
     use diesel::sql_types::*;
-    use super::sql_types::UsersProviderEnum;
+    use super::sql_types::Providers;
 
     users (id) {
-        #[max_length = 32]
-        id -> Varchar,
+        id -> Uuid,
         name -> Text,
-        #[max_length = 256]
-        email -> Varchar,
-        #[max_length = 6]
-        provider -> UsersProviderEnum,
-        #[max_length = 256]
-        provider_id -> Varchar,
-        created_at -> Datetime,
+        email -> Text,
+        provider -> Providers,
+        provider_id -> Text,
+        created_at -> Timestamptz,
     }
 }
+
+diesel::joinable!(user_groups -> groups (group_id));
+diesel::joinable!(user_groups -> users (user_id));
 
 diesel::allow_tables_to_appear_in_same_query!(groups, user_groups, users,);

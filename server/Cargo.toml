@@ -10,22 +10,24 @@ keywords.workspace    = true
 license.workspace     = true
 repository.workspace  = true
 
+# https://github.com/diesel-rs/diesel/issues/2753#issuecomment-842083788
+[build-dependencies]
+diesel = { version = "*", features = ["postgres"] }
+
 [dependencies]
-anyhow             = { workspace = true }
-axum-extra         = { workspace = true }
-axum               = { workspace = true }
-bb8                = { workspace = true }
-diesel             = { workspace = true }
-chrono             = { workspace = true }
-diesel-async       = { workspace = true }
-diesel-derive-enum = { workspace = true }
+anyhow             = { version = "1.0.75" }
+axum-extra         = { version = "0.7.7", features = ["typed-routing"] }
+axum               = { version = "0.6.20", features = ["tracing", "http2", "macros", "headers"] }
+bb8                = { version = "0.8.1" }
+chrono             = { version = "0.4.24", features = ["serde"] }
+diesel             = { version = "2.1.0", features = ["postgres", "uuid", "serde_json", "chrono"] }
+diesel-async       = { version = "0.3.2", features = ["postgres", "bb8"] }
+diesel-derive-enum = { version = "2.1.0", features = ["postgres"] }
 dotenvy            = { workspace = true }
-google-calendar    = { workspace = true }
-tokio              = { workspace = true }
-tracing            = { workspace = true }
-tracing-subscriber = { workspace = true }
+google-calendar    = { version = "0.7.0" }
+tokio              = { version = "1.32.0", features = ["full"] }
+tracing            = { version = "0.1.37" }
+tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
+uuid               = { version = "1.4.1", features = ["v4"] }
 serde              = { workspace = true }
 serde_json         = { workspace = true }
-
-[dev-dependencies]
-insta = { workspace = true }

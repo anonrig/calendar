@@ -1,8 +1,9 @@
+use anyhow::Error;
 use axum::http::StatusCode;
 use axum::response::IntoResponse;
 use axum::response::Response;
 
-pub struct AppError(anyhow::Error);
+pub struct AppError(Error);
 
 impl IntoResponse for AppError {
     fn into_response(self) -> Response {
@@ -13,7 +14,7 @@ impl IntoResponse for AppError {
 
 impl<E> From<E> for AppError
 where
-    E: Into<anyhow::Error>,
+    E: Into<Error>,
 {
     fn from(err: E) -> Self {
         Self(err.into())

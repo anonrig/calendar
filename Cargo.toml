@@ -11,32 +11,10 @@ license     = "MIT"
 repository  = "https://github.com/anonrig/calendar"
 
 [workspace.dependencies]
-# Crates
-calendar_server = { path = "server" }
-calendar_tauri  = { path = "client/src-tauri" }
-
 # Dependencies
-anyhow                    = { version = "1.0.75" }
-axum-extra                = { version = "0.7.7", features = ["typed-routing"] }
-axum                      = { version = "0.6.20", features = ["tracing", "http2", "macros", "headers"] }
-bb8                       = { version = "0.8.1" }
-diesel                    = { version = "2.1.0", features = ["mysql", "chrono"] }
-diesel-async              = { version = "0.3.1", features = ["mysql", "bb8"] }
-diesel-derive-enum        = { version = "2.1.0", features = ["mysql"] }
-dotenvy                   = { version = "0.15.7" }
-google-calendar           = { version = "0.7.0" }
-tauri                     = { version = "2.0.0-alpha.11" }
-tauri-build               = { version = "2.0.0-alpha.8" }
-tauri-plugin-window-state = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
-tokio                     = { version = "1.32.0", features = ["full"] }
-tracing                   = { version = "0.1.37" }
-tracing-subscriber        = { version = "0.3.17", features = ["env-filter"] }
-serde                     = { version = "1.0.188", features = ["derive"] }
-chrono                    = { version = "0.4.24", features = ["serde"] }
-serde_json                = { version = "1.0.105" }
-
-# Dev Dependencies
-insta = { version = "1.31.0", features = ["yaml", "glob", "walkdir"] }
+dotenvy    = { version = "0.15.7" }
+serde      = { version = "1.0.185", features = ["derive"] }
+serde_json = { version = "1.0.105" }
 
 [workspace.metadata.workspaces]
 allow_branch = "main"

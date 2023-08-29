@@ -3,20 +3,20 @@ use axum::{
     extract::{FromRef, FromRequestParts},
     http::{request::Parts, StatusCode},
 };
-use diesel_async::{pooled_connection::AsyncDieselConnectionManager, AsyncMysqlConnection};
+use diesel_async::{pooled_connection::AsyncDieselConnectionManager, AsyncPgConnection};
 use std::env;
 
-type Pool = bb8::Pool<AsyncDieselConnectionManager<AsyncMysqlConnection>>;
+type Pool = bb8::Pool<AsyncDieselConnectionManager<AsyncPgConnection>>;
 
 pub struct DatabaseConnection(
-    pub bb8::PooledConnection<'static, AsyncDieselConnectionManager<AsyncMysqlConnection>>,
+    pub bb8::PooledConnection<'static, AsyncDieselConnectionManager<AsyncPgConnection>>,
 );
 
 pub async fn get_connection_pool() -> Pool {
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-    let config = AsyncDieselConnectionManager::<AsyncMysqlConnection>::new(database_url);
+    let config = AsyncDieselConnectionManager::<AsyncPgConnection>::new(database_url);
 
-    Ok(bb8::Pool::builder().build(config).await?)
+    Pool::builder().build(config).await.unwrap()
 }
 
 #[async_trait]
