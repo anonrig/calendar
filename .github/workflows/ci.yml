@@ -140,6 +140,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Setup docker (missing on MacOS)
+        if: runner.os == 'macos'
+        run: |
+          brew install docker
+          colima start
+
       - name: Install Rust Toolchain
         uses: ./.github/actions/rustup
 
