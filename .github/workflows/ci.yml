@@ -123,6 +123,20 @@ jobs:
         include:
           - os: macos-latest
     runs-on: ${{ matrix.os }}
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_DB: calon
+          POSTGRES_USER: calon
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgres://calon:postgres@localhost/calon
     steps:
       - uses: actions/checkout@v3
 
