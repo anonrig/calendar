@@ -11,6 +11,10 @@ license     = "MIT"
 repository  = "https://github.com/anonrig/calendar"
 
 [workspace.dependencies]
+# Crates
+calendar_client = { path = "client" }
+calendar_server = { path = "server" }
+
 # Dependencies
 dotenvy    = { version = "0.15.7" }
 serde      = { version = "1.0.185", features = ["derive"] }
