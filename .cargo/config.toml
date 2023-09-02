@@ -1,5 +1,7 @@
 [alias]
 # Do not append `--` or it will break IDEs
 ck = "check --workspace --all-targets --all-features --locked"
+ck-client = "check --bin calendar_client --workspace --all-targets --locked"
+ck-server = "check --bin calendar_server --workspace --all-targets --locked"
 lint = "clippy --workspace --all-targets --all-features"
 codecov = "llvm-cov nextest --workspace --ignore-filename-regex tasks"

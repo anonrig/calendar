@@ -13,7 +13,7 @@ alias t := test
 # or install via `cargo install cargo-binstall`
 init:
   cargo binstall cargo-nextest cargo-watch cargo-insta typos-cli taplo-cli cargo-llvm-cov tauri-cli -y && \
-    cargo install diesel_cli --no-default-features --features "postgres uuid" && \
+    cargo install diesel_cli --no-default-features --features postgres && \
     pnpm install -C client && \
     pnpm -C client build
 
@@ -64,12 +64,3 @@ run-server:
 
 run-tauri:
   cargo tauri dev
-
-make-migrations name:
-  diesel migration generate {{name}}
-
-run-migrations:
-  diesel migration run
-
-revert-migrations:
-  diesel migration revert
