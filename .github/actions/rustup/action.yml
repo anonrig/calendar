@@ -41,6 +41,10 @@ runs:
         echo 'restore-cache: ${{ inputs.restore-cache }}'
         echo 'save-cache: ${{ inputs.save-cache }}'
 
+    - name: Create empty 'out' directory for client
+      shell: bash
+      run: mkdir client/out
+
     - name: Remove `profile` line on MacOS
       shell: bash
       if: runner.os == 'macOS'
