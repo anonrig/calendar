@@ -13,10 +13,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -27,22 +23,26 @@ jobs:
         node-version: ${{ matrix.node-version }}
         working-directory: ./client
 
-    - name: Install pnpm
-      run: npm install -g pnpm
+    - name: Install pnpm using pnpm/action-setup
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
 
-    - name: Install Project Dependencies with pnpm
+    - name: Install Project Dependencies with pnpm in the client folder
       run: pnpm install
+      working-directory: ./client
 
-    - name: Build Next.js App with pnpm
+    - name: Build Next.js App with pnpm in the client folder
       run: pnpm run build
+      working-directory: ./client
 
-    - name: Run Biome.js
-      run: |
-         npm install -g @biomejs/biome
-         biome format
+    - name: Run Biome.js in the client folder
+      run: biome format
+      working-directory: ./client
 
-    - name: Test Next.js App with pnpm
+    - name: Test Next.js App with pnpm in the client folder
       run: pnpm test
+      working-directory: ./client
 
     - name: Set up Rust and Tauri
       uses: actions/checkout@v2
@@ -50,27 +50,27 @@ jobs:
         repository: tauri-apps/tauri
         path: ./client
 
-    - name: Install Rust stable
+    - name: Install Rust stable in the client folder
       run: |
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
         source $HOME/.cargo/env
       working-directory: ./client
 
-    - name: Install Dependencies for Tauri (Ubuntu)
+    - name: Install Dependencies for Tauri (Ubuntu) in the client folder
       if: matrix.node-version == 'ubuntu-latest'
       run: |
         sudo apt-get update
         sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
       working-directory: ./client
 
-    - name: Install Frontend Dependencies for Tauri with pnpm
+    - name: Install Frontend Dependencies for Tauri with pnpm in the client folder
       run: pnpm install
       working-directory: ./client
 
-    - name: Build Tauri App
+    - name: Build Tauri App in the client folder
       run: pnpm run tauri build
       working-directory: ./client
 
-    - name: Test Tauri App
+    - name: Test Tauri App in the client folder
       run: pnpm run tauri dev
       working-directory: ./client
