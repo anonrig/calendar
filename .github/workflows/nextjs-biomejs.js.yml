@@ -46,12 +46,6 @@ jobs:
       - name: Install Rust Toolchain
         uses: ./.github/actions/rustup
 
-    - name: Install Dependencies for Tauri (Ubuntu) in the client folder
-      if: matrix.node-version == 'ubuntu-latest'
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
-      working-directory: ./client
 
     - name: Build Tauri App in the client folder
       run: pnpm run tauri build
