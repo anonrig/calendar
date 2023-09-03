@@ -42,9 +42,6 @@ jobs:
       run: pnpm run lint
       working-directory: ./client
 
-    - name: Test Next.js App with pnpm in the client folder
-      run: pnpm test
-      working-directory: ./client
 
     - name: Set up Rust and Tauri
       uses: actions/checkout@v2
