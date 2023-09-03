@@ -1,4 +1,4 @@
-name: Build and Test Next.js with Biome.js
+name: 'Build and Test Next.js with Biome.js, Tauri, and pnpm'
 
 on:
   push:
@@ -9,9 +9,13 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
 
     steps:
     - name: Checkout code
@@ -20,19 +24,53 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: ${{ matrix.node-version }}
         working-directory: ./client
 
-    - name: Install Dependencies
-      run: npm install
+    - name: Install pnpm
+      run: npm install -g pnpm
 
-    - name: Build Next.js App
-      run: npm run build
+    - name: Install Project Dependencies with pnpm
+      run: pnpm install
+
+    - name: Build Next.js App with pnpm
+      run: pnpm run build
 
     - name: Run Biome.js
       run: |
          npm install -g @biomejs/biome
-          biome format
+         biome format
 
-    - name: Test Next.js App
-      run: npm test
+    - name: Test Next.js App with pnpm
+      run: pnpm test
+
+    - name: Set up Rust and Tauri
+      uses: actions/checkout@v2
+      with:
+        repository: tauri-apps/tauri
+        path: ./client
+
+    - name: Install Rust stable
+      run: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
+        source $HOME/.cargo/env
+      working-directory: ./client
+
+    - name: Install Dependencies for Tauri (Ubuntu)
+      if: matrix.node-version == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
+      working-directory: ./client
+
+    - name: Install Frontend Dependencies for Tauri with pnpm
+      run: pnpm install
+      working-directory: ./client
+
+    - name: Build Tauri App
+      run: pnpm run tauri build
+      working-directory: ./client
+
+    - name: Test Tauri App
+      run: pnpm run tauri dev
+      working-directory: ./client
