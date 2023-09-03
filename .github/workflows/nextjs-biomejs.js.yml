@@ -37,7 +37,7 @@ jobs:
       working-directory: ./client
 
     - name: Run Biome.js in the client folder
-      run: biome format
+      run: pnpm run lint
       working-directory: ./client
 
     - name: Test Next.js App with pnpm in the client folder
@@ -63,14 +63,10 @@ jobs:
         sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
       working-directory: ./client
 
-    - name: Install Frontend Dependencies for Tauri with pnpm in the client folder
-      run: pnpm install
-      working-directory: ./client
-
     - name: Build Tauri App in the client folder
       run: pnpm run tauri build
       working-directory: ./client
 
     - name: Test Tauri App in the client folder
-      run: pnpm run tauri dev
+      run: pnpm run dev
       working-directory: ./client
