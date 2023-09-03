@@ -67,6 +67,3 @@ jobs:
       run: pnpm run tauri build
       working-directory: ./client
 
-    - name: Test Tauri App in the client folder
-      run: pnpm run dev
-      working-directory: ./client
