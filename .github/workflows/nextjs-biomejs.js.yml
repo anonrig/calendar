@@ -29,7 +29,7 @@ jobs:
     - name: Install pnpm using pnpm/action-setup
       uses: pnpm/action-setup@v2
       with:
-        version: 8
+        version: latest
 
     - name: Install Project Dependencies with pnpm in the client folder
       run: pnpm install
