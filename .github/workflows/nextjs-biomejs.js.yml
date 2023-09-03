@@ -43,17 +43,8 @@ jobs:
       working-directory: ./client
 
 
-    - name: Set up Rust and Tauri
-      uses: actions/checkout@v2
-      with:
-        repository: tauri-apps/tauri
-        path: ./client
-
-    - name: Install Rust stable in the client folder
-      run: |
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
-        source $HOME/.cargo/env
-      working-directory: ./client
+      - name: Install Rust Toolchain
+        uses: ./.github/actions/rustup
 
     - name: Install Dependencies for Tauri (Ubuntu) in the client folder
       if: matrix.node-version == 'ubuntu-latest'
