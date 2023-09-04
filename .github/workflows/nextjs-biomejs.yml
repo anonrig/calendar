@@ -43,8 +43,8 @@ jobs:
       working-directory: ./client
 
 
-      - name: Install Rust Toolchain
-        uses: ./.github/actions/rustup
+    - name: Install Rust Toolchain
+      uses: ./.github/actions/rustup
 
 
     - name: Install tauri cli
