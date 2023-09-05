@@ -46,6 +46,6 @@ jobs:
       working-directory: ./client
 
     - name: Install tauri cli
-      run: cargo binstall tauri-cli --version 2.0.0-alpha.11
+      run: cargo install tauri-cli --version 2.0.0-alpha.11
     - name: Build
       run: cargo tauri build
