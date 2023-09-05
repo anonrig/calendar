@@ -20,6 +20,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Install Rust Toolchain
+      uses: ./.github/actions/rustup
+
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
@@ -42,13 +45,7 @@ jobs:
       run: pnpm run lint
       working-directory: ./client
 
-
-    - name: Install Rust Toolchain
-      uses: ./.github/actions/rustup
-
-
     - name: Install tauri cli
       run: cargo binstall tauri-cli --version 2.0.0-alpha.11
     - name: Build
       run: cargo tauri build
-
