@@ -12,14 +12,11 @@ alias t := test
 # You can download the pre-compiled binary from <https://github.com/cargo-bins/cargo-binstall#installation>
 # or install via `cargo install cargo-binstall`
 init:
-  cargo binstall cargo-nextest cargo-watch cargo-insta typos-cli taplo-cli cargo-llvm-cov tauri-cli -y && \
-    cargo install diesel_cli --no-default-features --features postgres && \
-    pnpm install -C client && \
-    pnpm -C client build
+  cargo binstall cargo-nextest cargo-watch cargo-insta typos-cli taplo-cli cargo-llvm-cov -y && \
+    cargo install diesel_cli --no-default-features --features postgres
 
 # When ready, run the same CI commands
 ready:
-  pnpm -C client lint-fix
   typos
   cargo fmt
   just check
@@ -62,5 +59,5 @@ codecov:
 run-server:
   cargo run --bin calendar_server
 
-run-tauri:
-  cargo tauri dev
+lint-client:
+  swiftlint --fix --strict

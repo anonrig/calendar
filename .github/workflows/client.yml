@@ -4,34 +4,30 @@ on:
   workflow_dispatch:
   pull_request:
     types: [opened, synchronize]
-    paths-ignore:
-      - "**/*.md"
+    paths:
+      - '.github/workflows/client.yml'
+      - 'client/.swiftlint.yml'
+      - 'client/**/*.swift'
   push:
     branches:
       - main
-    paths-ignore:
-      - "**/*.md"
+    paths:
+      - '.github/workflows/client.yml'
+      - 'client/.swiftlint.yml'
+      - 'client/**/*.swift'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
   cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 jobs:
-  test:
-    name: Test
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: macos-latest
-    runs-on: ${{ matrix.os }}
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Rust Toolchain
-        uses: ./.github/actions/rustup
-
-      - name: Install cargo-nextest
-        uses: taiki-e/install-action@cargo-nextest
-
-      - run: cargo nextest run --bin calendar_tauri
+      - name: GitHub Action for SwiftLint with --strict
+        uses: norio-nomura/action-swiftlint@3.2.1
+        with:
+          args: --strict
