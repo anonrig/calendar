@@ -1,5 +1,5 @@
 [workspace]
-members = ["server", "client/src-tauri"]
+members = ["server"]
 
 [workspace.package]
 authors     = ["Yagiz Nizipli <yagiz@nizipli.com"]
@@ -12,7 +12,6 @@ repository  = "https://github.com/anonrig/calendar"
 
 [workspace.dependencies]
 # Crates
-calendar_client = { path = "client" }
 calendar_server = { path = "server" }
 
 # Dependencies
