@@ -1,0 +1,54 @@
+name: 'Build and Test Next.js with Biome.js, Tauri, and pnpm'
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths-ignore:
+      - "**/*.md"
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**/*.md"
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Rust Toolchain
+      uses: ./.github/actions/rustup
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install pnpm using pnpm/action-setup
+      uses: pnpm/action-setup@v2
+      with:
+        version: latest
+
+    - name: Install Project Dependencies with pnpm in the client folder
+      run: pnpm install
+      working-directory: ./client
+
+    - name: Build Next.js App with pnpm in the client folder
+      run: pnpm run build
+      working-directory: ./client
+
+    - name: Run Biome.js in the client folder
+      run: pnpm run lint
+      working-directory: ./client
+
+    - name: Install cargo-binstall
+      uses: taiki-e/install-action@cargo-binstall
+
+    - name: Install tauri-cli w/ cargo-binstall
+      run: cargo binstall -y --force tauri-cli --version 2.0.0-alpha.11
+
+    - name: Build
+      run: cargo tauri build
