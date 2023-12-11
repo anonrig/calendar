@@ -25,7 +25,7 @@ diesel-async       = { version = "0.4.1", features = ["postgres", "bb8"] }
 diesel-derive-enum = { version = "2.1.0", features = ["postgres"] }
 dotenvy            = { workspace = true }
 google-calendar    = { version = "0.7.0" }
-tokio              = { version = "1.32.0", features = ["full"] }
+tokio              = { version = "1.35.0", features = ["full"] }
 tracing            = { version = "0.1.37" }
 tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
 uuid               = { version = "1.4.1", features = ["v4"] }
